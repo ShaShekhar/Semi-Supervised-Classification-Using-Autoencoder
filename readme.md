@@ -34,7 +34,7 @@ Download the dataset from this [link](https://drive.google.com/open?id=1SUBraBUo
  
     ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063.jpg "Image")   ------->  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063_0.jpg  "Extracted Patch")
 
- 4. For training of autoencoder the _Train-data_ folder inside _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches. run **python data_augment.py**. It will create images inside **Augmented-data** folder and this folder is inside the **Extracted-patches** folder.
+ 4. For training of autoencoder the _Train-data_ folder inside _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches. run **python data_augment.py**. It will create images inside **Augmented-data** folder and this folder is located inside the **Extracted-patches** folder.
 
  5. copy the **Train-data** of **Extracted-patches** folder to **Augmented-data** by using **copy_train_to_aug.py**. Here I am also using images inside _Val-data_ as validation data and _Test-data_
  as test data of Extracted-patches folder for **autoencoder** training.
