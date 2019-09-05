@@ -32,7 +32,7 @@ Download the dataset from this [link](https://drive.google.com/open?id=1SUBraBUo
 
  3. By using BoundingBox coordinates given in .xml file, which are located inside the **Data/Annotations** folder extract the small patches of .jpg images from the images present in **Splited-data** folder by using **extract_patches.py** file. run **python extract_patches.py**. It will create 3 folder named **Train-data, Val-data, Test-data inside the Extracted-patches folder**.
  
- ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063.jpg "Image") ------->  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063_0.jpg "Extracted Patch")
+    ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063.jpg "Image")   ------->  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063_0.jpg  "Extracted Patch")
 
  4. For training of autoencoder the _Train-data_ folder inside _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches. run **python data_augment.py**. It will create images inside **Augmented-data** folder and this folder is inside the **Extracted-patches** folder.
 
