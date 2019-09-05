@@ -15,6 +15,8 @@ By definition, machine learning can be defined as a complex process of learning 
  
  For representation purpose the images shown below are not of size 28x28.
  
+ Hover the mouse over the image to get the classification label.
+ 
  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00002_0.jpg "Helmet Present")       ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/01390_2.jpg "Helmet not Present")      ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00022_0.jpg "Helmet Present")        ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/02680_0.jpg "Helmet not Present")      ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00167_0.jpg "Helmet Present")      ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00080_0.jpg "Helmet Present")
 
 # Dataset
@@ -29,8 +31,10 @@ Download the dataset from this [link](https://drive.google.com/open?id=1SUBraBUo
     run **python split_data.py**. It will create 3 folder named **Train-data, Val-data, Test-data inside the Splited-data folder**.
 
  3. By using BoundingBox coordinates given in .xml file, which are located inside the **Data/Annotations** folder extract the small patches of .jpg images from the images present in **Splited-data** folder by using **extract_patches.py** file. run **python extract_patches.py**. It will create 3 folder named **Train-data, Val-data, Test-data inside the Extracted-patches folder**.
+ 
+ ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063.jpg "Image") ------->  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063_0.jpg "Extracted Patch")
 
- 4. For training of autoencoder the _Train-data_ folder inside _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches. run **python data_augment.py**. It will create images inside *Augmented-data* folder and this folder is inside the **Extracted-patches** folder.
+ 4. For training of autoencoder the _Train-data_ folder inside _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches. run **python data_augment.py**. It will create images inside **Augmented-data** folder and this folder is inside the **Extracted-patches** folder.
 
  5. copy the **Train-data** of **Extracted-patches** folder to **Augmented-data** by using **copy_train_to_aug.py**. Here I am also using images inside _Val-data_ as validation data and _Test-data_
  as test data of Extracted-patches folder for **autoencoder** training.
