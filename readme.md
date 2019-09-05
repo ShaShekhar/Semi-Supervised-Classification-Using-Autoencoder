@@ -11,8 +11,8 @@ By definition, machine learning can be defined as a complex process of learning 
 **3. Semi-Supervised Learning** is combination of supervised and unsupervised learning processes in which the unlabelled data is used for training a model as well. In this approach, the properties of unspervised learning are used to learn the best possible representation of data and the properties of supervised learning are used to learn the relationships in the representations which are then used to make predictions.
 
 # Problem Statement
- Given the image of size 28x28 classify that in that image helmet is present or not.
- 
+ Given the GrayScale image of size 28x28 classify that, in that image helmet is present or not.
+ For representation purpose the images shown below are not of size 28x28.
  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00002_0.jpg "Helmet Present")       ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/01390_2.jpg "Helmet not Present")      ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00022_0.jpg "Helmet Present")        ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/02680_0.jpg "Helmet not Present")      ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00167_0.jpg "Helmet Present")      ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00080_0.jpg "Helmet Present")
 
 # Dataset
