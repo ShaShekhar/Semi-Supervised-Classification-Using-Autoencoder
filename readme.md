@@ -12,7 +12,8 @@ By definition, machine learning can be defined as a complex process of learning 
 
 # Problem Statement
  Given the image of size 28x28 classify that in that image helmet is present or not.
- ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00002_0.jpg "Helmet Present")  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/01390_2.jpg "Helmet not Present") ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00022_0.jpg "Helmet Present")  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/02680_0.jpg "Helmet not Present") ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00167_0.jpg "Helmet Present")
+ 
+ ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00002_0.jpg "Helmet Present")    ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/01390_2.jpg "Helmet not Present")    ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00022_0.jpg "Helmet Present")     ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/02680_0.jpg "Helmet not Present")   ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00167_0.jpg "Helmet Present")
 
 # Dataset
 Download the dataset from this [link](https://drive.google.com/open?id=1SUBraBUovros2qTt20LYPkRlgmsElVxg "Dataset"). It contains two folder **JPEGImages** and **Annotation** folder.The JPEGImages folder contains the actual images and Annotation folder contains .xml file which contains the Bounding Box for those images.
