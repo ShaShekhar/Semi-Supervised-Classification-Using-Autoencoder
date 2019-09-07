@@ -26,14 +26,14 @@ Download the dataset from this [link](https://drive.google.com/open?id=1SUBraBUo
  1.  Clone this repository then place the downloaded Dataset with the name
     **Data** folder into the cloned repository.
 
-    `git clone https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder.git`
+     `git clone https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder.git`
 
  2.  Now Split the images from **Data/JPEGImages** folder into _Test_,
     _Val_ and _Train_ Datasets using **split_data.py** file.
 
      run in terminal
 
-      >python split_data.py
+    >python split_data.py
 
     It will create 3 folder named **Train-data, Val-data, Test-data** inside the **Splited-data** directory.
 
