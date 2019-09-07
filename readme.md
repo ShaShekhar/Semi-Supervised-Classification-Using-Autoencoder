@@ -23,63 +23,70 @@ By definition, machine learning can be defined as a complex process of learning 
 Download the dataset from this [link](https://drive.google.com/open?id=1SUBraBUovros2qTt20LYPkRlgmsElVxg "Dataset"). It contains two folder **JPEGImages** and **Annotation** folder.The JPEGImages folder contains the actual images and Annotation folder contains .xml file which contains the Bounding Box for those images.
 
 # Steps involved
- 1. Clone this repository then place the downloaded Dataset with the name **Data** folder into the cloned repository.
+ 1.  Clone this repository then place the downloaded Dataset with the name
+    **Data** folder into the cloned repository.
 
     `git clone https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder.git`
 
- 2. Now Split the images from **Data/JPEGImages** folder into _Test_, _Val_ and _Train_ Datasets using **split_data.py** file.
+ 2.  Now Split the images from **Data/JPEGImages** folder into _Test_,
+    _Val_ and _Train_ Datasets using **split_data.py** file.
 
-  run in terminal
+     run in terminal
 
-  >python split_data.py
+      >python split_data.py
 
-   It will create 3 folder named **Train-data, Val-data, Test-data** inside the **Splited-data** directory.
+    It will create 3 folder named **Train-data, Val-data, Test-data** inside the **Splited-data** directory.
 
- 3. By using BoundingBox coordinates given in .xml file, which are located inside the **Data/Annotations** folder extract the small patches of .jpg images from the images present in **Splited-data**.
+ 3. By using BoundingBox coordinates given in .xml file, which are
+    located inside the **Data/Annotations** folder extract the small patches of .jpg images from the images present in **Splited-data**.
 
-  >python extract_patches.py
+     >python extract_patches.py
 
-   It will create 3 folder named **Train-data, Val-data, Test-data inside the Extracted-patches folder**.
+   It will create 3 folder named **Train-data, Val-data, Test-data** inside the **Extracted-patches** directory.
 
-    ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063.jpg "Image")   ------->  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063_0.jpg  "Extracted Patch")
+ ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063.jpg "Image")   ------->  ![](https://github.com/ShaShekhar/Semi-Supervised-Classification-Using-Autoencoder/blob/master/fig/00063_0.jpg  "Extracted Patch")
 
- 4. For training of autoencoder the _Train-data_ folder inside _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches.
+ 4. For training of autoencoder the _Train-data_ folder inside
+   _Extracted-patches_ contains nearly 14000 patches, which is very less as compared to number of images required to train **Autoencoder**. Here i'm using data augmentation technique to increase the patches.
 
- >python data_augment.py
+    >python data_augment.py
 
-  It will create images inside **Augmented-data** folder and this folder is located inside the **Extracted-patches** folder.
+   It will create images inside **Augmented-data** folder and this folder is located inside the **Extracted-patches** folder.
 
- 5. copy the **Train-data** of **Extracted-patches** folder to **Augmented-data** by using
+ 5. copy the **Train-data** of **Extracted-patches** folder to
+    **Augmented-data** by using
 
- >python copy_train_to_aug.py
+     >python copy_train_to_aug.py
 
- 6. Now i'm going to convert the Augmented-data, Val-data, Test-data of **Extracted-patches** folder into pickled file for efficient loading for training of autoencoder.
+ 6. Now i'm going to convert the Augmented-data, Val-data, Test-data of
+    **Extracted-patches** folder into pickled file for efficient loading for training of autoencoder.
 
- >python convert_to_pickle.py
+    >python convert_to_pickle.py
 
-  It will create **train_data.pkl, test_data.pkl and val_data.pkl inside the Pickled-data** directory.
+   It will create **train_data.pkl, test_data.pkl and val_data.pkl inside the Pickled-data** directory.
 
  7. run
-  >python autoencoder.py
 
-    and train with different batch_size.
-    It will generate **autoencoder.h5** file, keep this file for initializing the weight of classification layer.
+    >python autoencoder.py
 
- 8. It's time to train the classification layer, but to train it we need label for each sample. The .xml file which is located inside the **Data/Annotations** folder contain label for each patch. For each .xml file if the helmet present then tag name is 'name' and data is 'color of helmet' e.g., white, blue etc. **.** I've extract the labels using
+    and train with different batch_size. It will generate **autoencoder.h5** file, keep this file for initializing the weight of classification layer.
 
-  >python extract_labels.py
+ 8. It's time to train the classification layer, but to train it we need
+    label for each sample. The .xml file which is located inside the **Data/Annotations** folder contain label for each patch. For each .xml file if the helmet present then tag name is 'name' and data is 'color of helmet' e.g., white, blue etc. **.** I've extract the labels using
 
-   It will create **train-data.csv, val-data.csv, test-data.csv**, which contain image_id and its corresponding label.
+      >python extract_labels.py
+
+    It will create **train-data.csv, val-data.csv, test-data.csv**, which contain image_id and its corresponding label.
 
 9. For efficient loading for training classifier i've pickled the data.
 
-  >python pickle_data_for_classification.py
+    >python pickle_data_for_classification.py
 
    It will genrate **train-data.pkl, val-data.pkl, test-data.pkl** file.
 
 10. Now It's time to train the classifier
 
-  >python classification.py
+     >python classification.py
 
    It will create **classification.h5** which if used for initializing the model and testing on new dataset.
    The accuracy i get on test data is _93.5%_.
