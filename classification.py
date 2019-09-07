@@ -6,10 +6,18 @@ import h5py
 import csv
 import os
 
-with open('classification_data.pkl', 'rb') as f:
-    classification_data = pickle.load(f)
-    train_data = classification_data[0]
-    train_label = classification_data[1]
+def load_data(file_path):
+    with open(file_path, 'rb') as f:
+        data = pickle.load(f)
+    return data
+
+def load_data_wrapper():
+    train_data = load_data('train-data.pkl')
+    val_data = load_data('val-data.pkl')
+    test_data = load_data('test-data.pkl')
+    return train_data, val_data, test_data
+
+(train_images, train_labels), (val_images, val_labels), (test_images, test_labels) = load_data_wrapper()
 
 input_shape = (28, 28, 1)
 input_layer = tf.keras.Input(shape=input_shape)
@@ -44,39 +52,24 @@ for layer in model.layers[0:5]:
 
 if os.path.exists('classification.h5'):
     model = tf.keras.models.load_model('classification.h5')
-    # comment below lines after training is done
-    #model.compile(loss='binary_crossentropy', optimizer='adam')
-    #model.fit(train_data, train_label, batch_size=2096, epochs=1000)
-    #model.save('classification.h5')
 else:
     model.compile(loss='binary_crossentropy', optimizer='adam')
-    model.fit(train_data, train_label, batch_size=2048, epochs=100)
+    model.fit(train_images, train_labels, batch_size=2048, epochs=100,
+              validation_data=(val_images, val_labels))
     model.save('classification.h5')
 
-test_image_label = []
-with open('test_labels.csv', 'r') as csv_reader:
-    csv_reader = csv.DictReader(csv_reader)
-    for line in csv_reader:
-        test_image_label.append((line['image_id'], line['label']))
 
-test_batch = len(test_image_label)
-test_data = np.zeros((test_batch, 28, 28, 1), dtype=np.float32)
-label = np.array([x[1] for x in test_image_label], dtype=np.float32)
+predicted_label = model.predict(test_images) # return 2d array of number
 
-for i in range(test_batch):
-    path = './Extracted-patches/Test-data/{}'.format(test_image_label[i][0])
-    test_sample = imread(path)
-    test_sample = test_sample.astype(np.float32) / 255.0
-    test_sample = np.expand_dims(test_sample, 2)
-    test_data[i, :, :, :] = test_sample
-predicted_label = model.predict(test_data) # return 2d array of number
-
+# If the output probability is greater than 0.5, it means helmet is present in the image
+# so label it as 1 and if output probability is less than 0.5, it means helmet is not present
+# in the image so label it as 0.
 predicted_label[predicted_label > 0.5] = 1
 predicted_label[predicted_label < 0.5] = 0
 predicted_label = np.squeeze(predicted_label)
 
-right_guess = sum(predicted_label == label)
+right_guess = sum(predicted_label == test_labels)
 
-accuracy = (right_guess/test_batch) * 100
+accuracy = (right_guess / len(test_labels)) * 100
+
 print('The accuracy on test data is {}'.format(accuracy))
-
